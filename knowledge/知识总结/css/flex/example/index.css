@@ -1,0 +1,24 @@
+.root{
+    display: flex;
+    width: 500px;
+    height: 50px;
+}
+.one{
+    flex: 100px;
+    width: 100px;
+    background: #ffa39e;
+}
+.two{
+    flex:1;
+    background: #ffffb8;
+}
+.three{
+    flex:1;
+    background: #b7eb8f;
+    
+
+}
+.four{
+    flex: 2;
+    background: #91d5ff;
+}

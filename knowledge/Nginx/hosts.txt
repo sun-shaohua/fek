@@ -1,0 +1,10 @@
+什么是hosts文件？
+hosts文件是一个用于存储计算网络中个节点信息的计算机文件。这个文件负责主机名映射到相应的IP地址上，
+hosts文件通常用于补充或者取代网络中的DNS的功能，与DNS不同的是用户可以控制hosts文件
+
+Mac上配置hosts
+打开hosts文件 命令： sudo vi /etc/hosts
+打开vi编辑器  命令： vi 。。。
+vi编辑器有三种模型：命令行模式command mode ，插入模式 insert mode，底行模式 last line mode
+刚打开的vi属于命令行模式，点击【i】转变成插入模式，点击【esc】转化成命令行模式
+退出 命令 ： :wq(保存并退出) :q!(强制退出，不保存)

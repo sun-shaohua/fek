@@ -1,0 +1,50 @@
+._ {
+  width: 100%;
+  height: 100%;
+
+  .background_image {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: url('../../icon/bg.jpeg') no-repeat;
+    background-size: cover;
+    animation: fade-away 2.5s linear forwards; //forwards当动画完成后，保持最后一帧的状态
+  }
+
+  .text {
+    position: absolute;
+    line-height: 55px;
+    color: #fefefe;
+    font-size: 36px;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: show 2.5s cubic-bezier(.74, -0.1, .86, .83) forwards;
+  }
+}
+
+@keyframes fade-away {
+
+  //背景图的明暗度动画
+  30% {
+    filter: brightness(1);
+  }
+
+  100% {
+    filter: brightness(0);
+  }
+}
+
+@keyframes show {
+
+  //文字的透明度动画
+  20% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

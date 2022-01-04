@@ -1,0 +1,22 @@
+react的生命周期
+react的生命周期包括三个阶段：挂载，渲染，卸载
+
+挂载：完成组建的初始化，生成DOM元素，并塞入页面的过程称为挂载
+渲染：render触发渲染
+卸载：页面中删除DOM元素的过程称为卸载
+ 
+一、挂载阶段
+1.constructor
+construtor钩子函数是组件的第一个钩子，这个函数里面存放自身的状态this.state()和super()函数
+2.getDerivedStateFromProps(nextProps,preState)
+getDerivedStateFromProps将父级组件传给子组件的值变成自己的state
+二、渲染阶段
+3.render
+render是class必须实现的方法
+4.componentDidMount
+componentDidMount是先初次渲染完之后执行的函数，可以派发axios
+三、卸载阶段
+5.componentWillUnmount
+componentWillUnmount() 会在组件卸载及销毁之前直接调用。在此方法中执行必要的清理操作，例如，清除 timer，取消网络请求或清除在 componentDidMount() 中创建的订阅等。
+
+

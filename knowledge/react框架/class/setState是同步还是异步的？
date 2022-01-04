@@ -1,0 +1,48 @@
+react中的setState是同步还是异步还是？
+
+setState 只在合成事件和钩子函数中是“异步”的，在原生事件和 setTimeout 中都是同步的。
+
+1.合成事件：就是react 在组件中的onClick等都是属于它自定义的合成事件
+2.原生事件：比如通过addeventListener添加的，dom中的原生事件
+
+setState的“异步”并不是说内部由异步代码实现，其实本身执行的过程和代码都是同步的，
+只是合成事件和钩子函数的调用顺序在更新之前，导致在合成事件和钩子函数中没法立马拿到更新后的值，形式了所谓的“异步”，
+当然可以通过第二个参数 setState(partialState, callback) 中的callback拿到更新后的结果。
+
+setState 的批量更新优化也是建立在“异步”（合成事件、钩子函数）之上的，在原生事件和setTimeout 中不会批量更新，
+在“异步”中如果对同一个值进行多次 setState ， setState 的批量更新策略会对其进行覆盖，取最后一次的执行，
+如果是同时 setState 多个不同的值，在更新时会对其进行合并批量更新。
+
+setState()的批量操作（batching）
+在一个事件handler函数中，不管setState()被调用多少次，
+他们也会在函数执行结束以后，被归结为一次重新渲染, 可以优化性能, 这个等到最后一起执行的行为被称为batching。
+所以在函数内的setState()是有序的，如果要更改同一个state key，最后被调用的总会覆盖之前的。
+
+因为batching的存在，所以这样的代码会和期待有出入。
+
+//假设现在this.state.value = 0;
+function eventHandler(){
+    this.setState({value:this.state.value + 1});
+    this.setState({value:this.state.value + 1});
+    this.setState({value:this.state.value + 1});
+}
+//最后this.state.value仍然会是1，不是3；
+
+所以不能依赖this.state来计算未来状态。如果想实现这样的效果，应该传一个函数给setState。这个函数有两个参数，第一个为previous state，第二个为props。这里的例子和props无关，只需要第一个参数，所以要达到效果，代码是这样
+
+// 假设 this.state = { value: 0 };
+function eventHandler(){
+    this.setState((state) => ({ value: state.value + 1}));
+    this.setState((state) => ({ value: state.value + 1}));
+    this.setState((state) => ({ value: state.value + 1}));
+}
+//现在this.state.value === 3;
+到这里我们得到结论，setState是异步执行的。
+
+所以setState总是异步的吗？
+当setState()不在事件Handler函数中，如在使用ajax的时候，这种batching的异步表现又不会发生。
+promise.then(() => {
+  // 不在事件函数中，所以setState立刻执行
+  this.setState({a: true}); // 重新渲染 {a: true, b: false }
+  this.setState({b: true}); // 重新渲染 {a: true, b: true }
+});

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <hrader></hrader>
+    <body>
+    <div>
+     position用于指定一个元素在文档中的定位方式。top，right，bottom和left则是决定该元素的最终位置。
+     position有static，relative，absoulte，stickey。
+     static: 该元素使用常规的布局方式，该元素在文档常规流中布局。此时的top,left,bottom,right，z-index无效。
+     relative: 该关键词下，元素先放置在未添加定位时的位置，在不改变页面布局的情况下调整元素的位置（此时元素未添加定位时的位置留有空白）。
+     absoulte: 会移除文档流，并不为元素预留空间，并不为元素预留空间，通过指定元素相对于最近的非 static 定位祖先元素的偏移，来确定元素位置。
+              绝对定位的元素可以设置外边距（margins），且不会与其他边距合并。
+     fixed: 元素移除正常的文档流，并不为元素预留空间，而是通过制定元素相对于屏幕视口（viewport）的位置指定元素的位置，
+          元素的位置在屏幕滚动时不会改变 ⚠️：当元素祖先的 transform, perspective 或 filter 属性非 none 时，容器由视口改为该祖先。
+    stickey: 元素根据正常文档流进行定位，然后相对他最近的滚动祖先。
+    </div>
+    </body>
+</html>

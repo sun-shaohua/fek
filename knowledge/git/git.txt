@@ -1,0 +1,57 @@
+git的发展过程
+   Git最初是linux开发者linus用了仅仅两周时间纯c语言编写成的。他在编写成之后立马接手了linux的源代码。
+不过在git之前是由bitMover公司的BitKeeper分布式版本控制系统管理源代码的。github网站就是用git系统管理它们的网站的，github是社区，git是系统。
+什么是集中式，什么是分布式？
+   除了git外还有svn，cvs这些版本控制系统，它们的区别是一个是分布式，一个是集中式的代码管理系统。
+区别在于集中式的版本控制系统每次在开发代码之前就需要从服务器上拉取一次最新的代码，如果服务器丢失了，那么所有的数据就丢失了。你的本机客户端仅仅保存了当前版本的信息。
+   换句话说，就是集中式的版本管理系统把代码集中在服务器上，如果你需要回滚操作都需要服务器的支持。
+   分布式的版本控制系统的区别在于，每个人的电脑都是服务器，当你从远程仓库拉下来一份代码后，你的电脑就是服务器。无须在担心远程仓库被删除或者找不到的情况。
+
+   像集中式它们都有一个主版本号，所有的版本迭代都以这个版本号为主，而分布式因为每个客户端都是服务器，git没有固定的版本号，但是有一个由哈希算法算出的id，
+用来回滚用的，同时也有一个master仓库，这个仓库是一切分支仓库的主仓库，我们可以推送提交到master并合并到主仓库上，主仓库的版本号会迭代一次，我们客户端上的git版本号无论迭代多少次，都跟master无关，只有合并时，master才会迭代一次。
+同时也有一个master仓库，这个仓库是一切分支仓库的主仓库，我们可以推送提交到master并合并到主仓库上，主仓库的版本号会迭代一次，我们客户端上的git版本号无论迭代多少次，都跟master无关，只有合并时，master才会迭代一次。
+
+配置git环境
+初次使用git需要配置用户名和邮箱
+git config --global user.name 'ssh'
+git config --global use.email 'ssh@qq.com'
+初始化 （初始化当前目录为仓库，并将当前仓库设置为master）
+git init
+工作区到暂存区
+git add .
+暂存区到本地仓库 git commit会生成一个40位的哈希值作为ID，并将git add的内容提交到本地仓库
+git commit -m "message"
+修改上次git commit 提交的信息
+git commit --amend
+查看历史提交记录
+git log
+commit b9e3a0d708ee5a81ea5ff383c6dabe716eec8cf1 (HEAD -> master) HEAD是指向的意思，这次提交到那个分支
+回滚代码仓库 git reset --hard
+reset参数是重置命令
+--hard是重置代码仓库版本
+有三种模式--soft 、--mixed以及--hard是三个恢复等级。
+使用--soft就仅仅将头指针恢复，已经add的暂存区以及工作空间的所有东西都不变。
+如果使用--mixed，就将头恢复掉，已经add的暂存区也会丢失掉，工作空间的代码什么的是不变的。
+如果使用--hard，那么一切就全都恢复了，头变，aad的暂存区消失，代码什么的也恢复到以前状态。
+  1.回退到指定历史版本
+  先查看历史版本  git log 可以查看历史提交信息，可以回去历史版本的id
+  git reset --hard  指定版本的id
+  2.回退当前仓库的指向版本
+  git reset --hard HEAD~1
+git基本组成框架：Workspace、Index / Stage、Repository、Remote
+Workspace：开发者工作区，也就是你当前写代码的目录，它一般保持的是最新仓库代码。
+Index / Stage：缓存区，最早叫Stage，现在新版本已经改成index，位于.git目录中，它用来存放临时动作，比如我们做了git add或者git rm，都是把文件提交到缓存区，这是可以撤销的，然后在通过git commit将缓存区的内容提交到本地仓库
+Repository：仓库区，是仓库代码，你所有的提交都在这里，git会保存好每一个历史版本，存放在仓库区，它可以是服务端的也可以是本地的，因为在分布式中，任何人都可以是主仓库。
+Remote：远程仓库，只能是别的电脑上的仓库，即服务器仓库。
+
+git rebase的使用
+假设项目只有一个master分支
+git clone master branch
+建立本地开发分支
+git checkout -b loacl
+在本地进行开发后
+git add .
+git commit -m"message"
+git 
+
+
