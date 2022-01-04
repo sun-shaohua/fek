@@ -44,14 +44,10 @@ Index / Stage：缓存区，最早叫Stage，现在新版本已经改成index，
 Repository：仓库区，是仓库代码，你所有的提交都在这里，git会保存好每一个历史版本，存放在仓库区，它可以是服务端的也可以是本地的，因为在分布式中，任何人都可以是主仓库。
 Remote：远程仓库，只能是别的电脑上的仓库，即服务器仓库。
 
-git rebase的使用
-假设项目只有一个master分支
-git clone master branch
-建立本地开发分支
-git checkout -b loacl
-在本地进行开发后
-git add .
-git commit -m"message"
-git 
+合并分支有两种方式merge和rebase
+git merge的使用
+会把两个分支最新的快照以及共同的先祖进行三方对比，然后合并产生一个新的提交对象
+
+
 
 
