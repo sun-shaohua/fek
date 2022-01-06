@@ -9,7 +9,7 @@
 - border box 边框盒包括内容和内边距，通常border相关的属性设置
 - margin box 这个设置盒子外边的区域，是盒子和其他元素之前的空白区域，通常使用margin相关的属性设置
 
-![css-box](./box-model.png)
+![css-box](box-model.png)
 
 注意：标准盒子模型和IE盒子模型的区别在于定义盒子的宽高是有哪些部分组成
 

@@ -3,7 +3,7 @@
 >Mobx是通过透明的函数响应式编程使得状态管理变得简单和可扩展
 >任何源自应用状态的东西都应该自动的获取。
 
-![mobx](./mobx.png);
+![mobx](mobx.png);
 
 ## 概念与原则
 
@@ -35,7 +35,7 @@
 
 Mobx支持单向数据流，也就是动作（action）改变状态，而状态的改变会影响更新所有受影响的视图
 
-![数据流动](./action-state-view.png)
+![数据流动](action-state-view.png)
 
 在状态改变时，所有衍生都会进行原子级的自动更新，因此永远不可能观察到中间值
 
@@ -67,15 +67,15 @@ class OrderLine{
 使用autorun装饰器的
 
 ```javaScript
-import { observable, autorun } from 'mobx';
- 
+import {observable, autorun} from 'knowledge/mobx/mobx';
+
 const value = observable(0);
 const number = observable(100);
- 
+
 autorun(() => {
-  console.log(value.get());
+    console.log(value.get());
 });
- 
+
 value.set(1);
 value.set(2);
 number.set(101);
