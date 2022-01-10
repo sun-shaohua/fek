@@ -16,7 +16,7 @@
 标准盒子模型和代替（IE）盒子模型
 >标准盒子模型的宽 = 350px +50px + 10px，高 = 150px + 50px + 10px
 >代替盒子模型宽 = 350px ， 高 = 150px
->即标准盒子模型的宽高 = box-content + box-padding + box-border ; 代替盒子模型的box-content = width/height - 2*margin - 2*padding
+>即标准盒子模型的宽高 = box-content + box-padding + box-border ; 代替盒子模型的box-content = width/height - 2*border - 2*padding
 
 ```css
 .box{
