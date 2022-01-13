@@ -17,13 +17,15 @@ let a = '1';
 //等于
 {
     let b = 3;
-    const c = b === 4;
+    const c: boolean = b === 4;
+    console.log(c)
 }
 
 //不等于 !==
 {
     let a = 1;
-    const c = a !== 2;
+    const c:boolean = a !== 2;
+    console.log(c)
 }
 //取非 !  一元运算符
 // a>b? '':''  三元运算
