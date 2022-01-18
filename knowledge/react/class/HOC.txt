@@ -1,0 +1,110 @@
+高阶组件（higher order component）
+
+什么是高阶组件？
+高阶组件是React中复用组件逻辑的一种技巧。hoc自身不是React Api的一部分，它是基于React组件特性而形成的设计模式。
+具体而言，高阶组件是参数是组件，返回一个新的组件的函数。
+
+const EnhancedComponent = higherOrderComponent(WarpedComponent)
+
+组件是将props转化成UI，而高阶组件就是将组件转化成另一个组件。
+
+使用高阶组件可以解决横切关注点的问题
+
+例如：CommentList组件，它订阅外部数据源，用以渲染评论列表
+
+class CommentList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      // 假设 "DataSource" 是个全局范围内的数据源变量
+      comments: DataSource.getComments()
+    };
+  }
+
+  componentDidMount() {
+    // 订阅更改
+    DataSource.addChangeListener(this.handleChange);
+  }
+
+  componentWillUnmount() {
+    // 清除订阅
+    DataSource.removeChangeListener(this.handleChange);
+  }
+
+  handleChange() {
+    // 当数据源更新时，更新组件状态
+    this.setState({
+      comments: DataSource.getComments()
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.comments.map((comment) => (
+          <Comment comment={comment} key={comment.id} />
+        ))}
+      </div>
+    );
+  }
+}
+
+CommentList ：
+在挂载时，向 DataSource 添加一个更改侦听器。
+在侦听器内部，当数据源发生变化时，调用 setState。
+在卸载时，删除侦听器。
+
+对于订阅了 DataSource 的组件，比如 CommentList，我们可以编写一个创建组件函数。
+该函数将接受一个子组件作为它的其中一个参数，该子组件将订阅数据作为 prop。让我们调用函数 withSubscription：
+
+const CommentListWithSubscription = withSubscription(
+  CommentList,
+  (DataSource) => DataSource.getComments()
+);
+
+第一个参数是被包装组件。第二个参数通过 DataSource 和当前的 props 返回我们需要的数据。
+
+当渲染 CommentListWithSubscription  时， CommentList  将传递一个 data prop，其中包含从 DataSource 检索到的最新数据：
+
+// 此函数接收一个组件...
+function withSubscription(WrappedComponent, selectData) {
+  // ...并返回另一个组件...
+  return class extends React.Component {
+    constructor(props) {
+      super(props);
+      this.handleChange = this.handleChange.bind(this);
+      this.state = {
+        data: selectData(DataSource, props)
+      };
+    }
+
+    componentDidMount() {
+      // ...负责订阅相关的操作...
+      DataSource.addChangeListener(this.handleChange);
+    }
+
+    componentWillUnmount() {
+      DataSource.removeChangeListener(this.handleChange);
+    }
+
+    handleChange() {
+      this.setState({
+        data: selectData(DataSource, this.props)
+      });
+    }
+
+    render() {
+      // ... 并使用新数据渲染被包装的组件!
+      // 请注意，我们可能还会传递其他属性
+      return <WrappedComponent data={this.state.data} {...this.props} />;
+    }
+  };
+}
+
+使用hoc注意点：
+1.在高阶组件内不要试图修改原始组件的内容
+2.HOC 为组件添加特性。自身不应该大幅改变约定。HOC 返回的组件与原组件应保持类似的接口。
+3.约定：最大化可组合性
+4.约定：包装显示名称以便轻松调试。高阶组件命名一般用with
+5.不要在 render 方法中使用 HOC。
