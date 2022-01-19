@@ -1,0 +1,89 @@
+class基本语法
+
+javaScript语言定义对象是通过构造函数来实现的
+
+function Test(x, y) {
+  this.x = x;
+  this.y = y;
+}
+
+Test.prototype.toString = function () {
+  return `${this.x}+${this.y}`;
+};
+
+const test = new Test(1, 2);
+console.log(test.toString());
+
+console.log(test.__proto__);
+console.log(Test.prototype);
+console.log(Test.prototype.__proto__);
+
+
+Es6的class写法
+
+class AAA {
+  public a: string;
+  private b: string;
+
+  constructor(a: string, b: string) {
+    this.a = a;
+    this.b = b;
+  }
+
+  get getA() {
+    return this.a;
+  }
+
+  get getB() {
+    return this.b;
+  }
+
+  set setA(a: string) {
+    this.a = a;
+  }
+
+  set setB(b: string) {
+    this.b = b;
+  }
+}
+
+class BBB extends AAA {
+  private c: string;
+  private d: string[];
+
+  constructor(a: string, b: string, c: string, d: string[]) {
+    super(a, b);
+    this.c = c;
+    this.d = d;
+  }
+
+  get getC() {
+    console.log(super.a);
+    console.log(super.getA);
+    return this.c;
+  }
+
+  get getD() {
+    console.log(super.getB);
+    return this.d;
+  }
+
+  set setC(c: string) {
+    this.c = c;
+  }
+
+  set setD(d: string[]) {
+    this.d = d;
+  }
+}
+
+const A = new AAA('1', '2');
+const B = new BBB('11', '22', '33', ['44', '55']);
+
+Es6的类的写法可以看作构造函数的另一种写法
+
+class A{
+}
+
+typeof A  // function
+A === A.protoType.constructor //true
