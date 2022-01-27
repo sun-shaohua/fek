@@ -1,0 +1,57 @@
+1.防抖实例
+
+const  debounce =(fun:Function,delay:number)=>{
+   let timer = null;  //创建一个标记用来存放定时器
+   return function(){
+    if(timer){
+       clearTimeout(timer)  //每当用户触发事件的是时候把之前的setTimeout clear
+   }
+    timer = setTimeout(fn,delay) // 创建一个新的setTimeout
+}
+
+2.节流实例
+(1).使用时间戳实现：
+
+function throttle(func, wait) {
+    var context, args;
+    var previous = 0;
+
+    return function() {
+        var now = Data.now();
+        context = this;
+        args = arguments;
+        if (now - previous > wait) {
+            func.apply(context, args);
+            previous = now;
+        }
+    }
+}
+
+function throttle(func,wait){
+let context ,args;
+let previous =0;
+    return function(){
+    let now = Data.now();
+    context = this ;
+    args = arguments;
+    if(now - previous > wait){
+     fun.apply(context,args);
+   previous = now;
+  }
+ }
+}
+
+(2).使用定时器
+function throttle(func, wait) {
+    let timeout,context,args;
+    return function() {
+        context = this;
+        args = arguments;
+        if (!timeout) {
+            timeout = setTimeout(function(){
+                timeout = null;  //在setTimeout里面，也即是到达时间后执行
+                func.apply(context, args)
+            }, wait)
+        }
+
+    }
