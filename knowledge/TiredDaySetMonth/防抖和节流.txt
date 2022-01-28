@@ -1,4 +1,5 @@
 1.防抖实例
+解释： 触发高频事件后n秒内函数只会执行一次，如果在n秒内高频事件重新触发，则重新计算事件。
 
 const  debounce =(fun:Function,delay:number)=>{
    let timer = null;  //创建一个标记用来存放定时器
@@ -10,8 +11,9 @@ const  debounce =(fun:Function,delay:number)=>{
 }
 
 2.节流实例
-(1).使用时间戳实现：
+解释：高频事件触发，但在 n 秒内只会执行一次，节流会稀释函数的执行频率。
 
+(1).使用时间戳实现：
 function throttle(func, wait) {
     var context, args;
     var previous = 0;

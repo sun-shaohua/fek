@@ -14,6 +14,6 @@ console.log(Number.isNaN(NaN)); //true
 
 //isNaN和Number.isNaN的区别
 const string_test = ''
-isNaN(string_test); //true
+isNaN(Number(string_test)); //true
 Number.isNaN('aaa')  //false
 
