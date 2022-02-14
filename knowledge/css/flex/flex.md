@@ -43,8 +43,8 @@
 2.row-reverse 方向：水平向左
 ![方向：水平向左](image/row-reverse.png)
 3.column 方向：垂直向上
-![方向：垂直向上](./column.png)
-4.column 方向：垂直向下
+![方向：垂直向上](image/column.png)
+4.column-reverse 方向：垂直向下
 ![方向：垂直向下](image/column-reverse.png)
 
 #### flex-wrap 决定容器内项目是否换行
@@ -59,11 +59,11 @@
  1.默认值,nowarp不换行，当主轴固定时，当项目的空间不足时，项目尺寸会随之调整，并不会到下一行
 ![nowarp](image/nowarp.png)
  2.warp，项目主轴总尺寸超过容器时，项目换行，第一行下上
- ![warp](./warp.png)
+ ![warp](image/warp.png)
  3.warp-reverse，项目主轴总尺寸超过容器时，项目换行，第一行在最下面
  ![warp-reverse](image/warp-reverse.png)
 
-#### flex-flow:flex-diretion,flex-warp的简写
+#### flex-flow:flex-direction,flex-warp的简写
 
 #### justify-content 定义项目在主轴的对齐方式
 
@@ -163,7 +163,7 @@ order:<integer>;
 默认值：auto,即项目本来的大小，这时候item的宽高取决于width或者height的值。
 在主轴为水平方向的时候，当设置了flex-basis，项目的宽设置值会失效，flex-basis的值为项目的宽，flex-basis需要跟flex-grow和flex-shrink配合使用才会发挥效果
 
-- 当flex-basis的值为0%的时候，是把该项目的尺寸设置为哦，故即使设置该尺寸为100px，也并没有什么用
+- 当flex-basis的值为0%的时候，是把该项目的尺寸设置为0，故即使设置该尺寸为100px，也并没有什么用
 - 当flex-basis的值为auto，根据尺寸的设定值width：200px，则200px不会被纳入剩余空间。
 
 #### flex-grow定义项目的放大比例

@@ -17,11 +17,11 @@
 }
 @keyframes slidein {
     from {
-        top: 0px;
-        left: 0px;
+        top: 0;
+        left: 0;
     }
     to {  
      top: 100px;
-     left: 100p x;
+     left: 100px;
     }
   }

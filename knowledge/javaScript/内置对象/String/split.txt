@@ -1,0 +1,16 @@
+split() 方法使用指定的分隔符字符串将一个String对象分割成子字符串数组，以一个指定的分割字串来决定每个拆分的位置。
+
+例子：
+const str = 'The quick brown fox jumps over the lazy dog.';
+
+const words = str.split(' ');
+console.log(words[3]);
+// expected output: "fox"
+
+const chars = str.split('');
+console.log(chars[8]);
+// expected output: "k"
+
+const strCopy = str.split();
+console.log(strCopy);
+// expected output: Array ["The quick brown fox jumps over the lazy dog."]

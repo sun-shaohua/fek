@@ -1,0 +1,5 @@
+charCodeAt()方法返回字符串指定字符的UTF-16代码单元
+
+语法：str.charCodeAt(index)
+
+例子："ABC".charCodeAt(0) // returns 65:"A"

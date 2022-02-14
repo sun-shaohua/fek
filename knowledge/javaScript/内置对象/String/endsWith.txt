@@ -1,0 +1,12 @@
+endsWith()方法用来判断当前字符串是否是以另外一个给定的子字符串“结尾”的，根据判断结果返回 true 或 false。
+
+语法：str.endsWith(searchString,[,length]);
+
+参数：
+searchString：要搜索的子字符串。
+length ：<可选> 作为 str 的长度。默认值为 str.length。
+
+返回值
+如果传入的子字符串在搜索字符串的末尾则返回true；否则将返回 false。
+
+这个方法帮助你确定一个字符串是否在另一个字符串的末尾。这个方法是大小写敏感的。

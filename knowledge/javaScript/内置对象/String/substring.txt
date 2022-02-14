@@ -1,0 +1,36 @@
+substring() 方法返回一个字符串在开始索引到结束索引之间的一个子集, 或从开始索引直到字符串的末尾的一个子集。
+
+语法
+str.substring(indexStart[, indexEnd])
+参数
+indexStart
+需要截取的第一个字符的索引，该索引位置的字符作为返回的字符串的首字母。
+indexEnd
+可选。一个 0 到字符串长度之间的整数，以该数字为索引的字符不包含在截取的字符串内。
+返回值
+包含给定字符串的指定部分的新字符串。
+
+例子：
+var anyString = "Mozilla";
+
+// 输出 "Moz"
+console.log(anyString.substring(0,3));
+console.log(anyString.substring(3,0));
+console.log(anyString.substring(3,-3));
+console.log(anyString.substring(3,NaN));
+console.log(anyString.substring(-2,3));
+console.log(anyString.substring(NaN,3));
+
+// 输出 "lla"
+console.log(anyString.substring(4,7));
+console.log(anyString.substring(7,4));
+
+// 输出 ""
+console.log(anyString.substring(4,4));
+
+// 输出 "Mozill"
+console.log(anyString.substring(0,6));
+
+// 输出 "Mozilla"
+console.log(anyString.substring(0,7));
+console.log(anyString.substring(0,10));

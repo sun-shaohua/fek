@@ -1,0 +1,6 @@
+codePointAt()方法返回一个Unicode编码值。
+
+语法： str.codePointAt(pos)
+参数： pos：这个字符串中需要转码的元素的位置。
+返回值 返回值是在字符串中的给定索引的编码单元体现的数字，如果在索引处没找到元素则返回 undefined 。
+
