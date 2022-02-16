@@ -1,0 +1,15 @@
+Object.fromEntries()方法将键值对的数组转化成对象
+
+语法：
+Object.fromEntries(arr);
+
+例子：
+const entries = new Map([
+  ['foo', 'bar'],
+  ['baz', 42]
+]);
+
+const obj = Object.fromEntries(entries);
+
+console.log(obj);
+// expected output: Object { foo: "bar", baz: 42 }

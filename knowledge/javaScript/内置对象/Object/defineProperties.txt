@@ -1,0 +1,26 @@
+Object.defineProperties()方法，直接在一个对象上定义新的属性或者修改原来的属性，并返回改对象。
+
+语法：
+Object.defineProperties(obj,props)
+
+参数：
+props
+要定义其可枚举属性或修改的属性描述符的对象。对象中存在的属性描述符主要有两种：数据描述符和访问器描述符（更多详情，请参阅Object.defineProperty()）。描述符具有以下键：
+configurable
+true 只有该属性描述符的类型可以被改变并且该属性可以从对应对象中删除。
+默认为 false
+enumerable
+true 只有在枚举相应对象上的属性时该属性显现。
+默认为 false
+value
+与属性关联的值。可以是任何有效的JavaScript值（数字，对象，函数等）。
+默认为 undefined.
+writable
+true只有与该属性相关联的值被assignment operator (en-US)改变时。
+默认为 false
+get
+作为该属性的 getter 函数，如果没有 getter 则为undefined。函数返回值将被用作属性的值。
+默认为 undefined
+set
+作为属性的 setter 函数，如果没有 setter 则为undefined。函数将仅接受参数赋值给该属性的新值。
+默认为 undefined

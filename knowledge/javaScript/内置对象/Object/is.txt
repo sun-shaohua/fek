@@ -1,0 +1,7 @@
+Object.is()判断两个值是否是同一个值。
+
+语法：
+Object.is(value1,value2);
+
+返回值
+返回一个boolean表示两个参数是否是同一个值。

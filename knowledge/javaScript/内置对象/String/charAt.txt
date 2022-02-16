@@ -2,4 +2,20 @@ charAt()方法从一个字符串中返回指定下标的字符。
 
 语法： str.charAt(index) (index介意 0 和str.length - 1)
 
+例子：
+var anyString = "Brave new world";
 
+console.log("The character at index 0   is '" + anyString.charAt(0)   + "'");
+console.log("The character at index 1   is '" + anyString.charAt(1)   + "'");
+console.log("The character at index 2   is '" + anyString.charAt(2)   + "'");
+console.log("The character at index 3   is '" + anyString.charAt(3)   + "'");
+console.log("The character at index 4   is '" + anyString.charAt(4)   + "'");
+console.log("The character at index 999 is '" + anyString.charAt(999) + "'");
+
+输出：
+The character at index 0 is 'B'
+The character at index 1 is 'r'
+The character at index 2 is 'a'
+The character at index 3 is 'v'
+The character at index 4 is 'e'
+The character at index 999 is ''

@@ -5,3 +5,17 @@ concat()方法将一个或者多个的字符串拼在在一起，返回一个新
 返回值： 返回一个新的字符串
 
 性能：强烈建议使用赋值操作符（+，+=）来代替concat
+
+例子：
+let hello = 'Hello, '
+console.log(hello.concat('Kevin', '. Have a nice day.'))
+// Hello, Kevin. Have a nice day.
+
+let greetList = ['Hello', ' ', 'Venkat', '!']
+"".concat(...greetList)  // "Hello Venkat!"
+
+"".concat({})    // [object Object]
+"".concat([])    // ""
+"".concat(null)  // "null"
+"".concat(true)  // "true"
+"".concat(4, 5)  // "45"
