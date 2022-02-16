@@ -1,0 +1,2 @@
+Promise.any()方法接收一个Promise可迭代对象
+其中只要一个promise成功，它就会返回这个成功的promise，如果所有的promise没有一个成功，那就返回一个失败的promise

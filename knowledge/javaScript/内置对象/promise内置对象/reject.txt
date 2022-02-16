@@ -1,0 +1,4 @@
+Promise.reject()方法返回一个带有拒绝原因的Promise对象。
+
+例子：
+Promise.reject(new Error('fail')).then(function(){},function(error){console.log(error)})

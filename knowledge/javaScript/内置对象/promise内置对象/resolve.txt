@@ -1,0 +1,15 @@
+Promise.resolve(value)方法返回一个给定值解析后的Promise对象。如果这个值是个Promise，那就返回这个Promise，
+如果这个值是thenable（带then方法），返回的promise会“跟随”这个thenable的对象，采用它的最终状态；否则返回的promise将以此值完成。
+此函数将类promise对象的多层嵌套展平。
+
+例子：
+const promise1 = Promise.resolve(123);
+promise1.then((value)=>{console.log(value)});
+
+错误的使用例子：
+const thenable={
+ then:(resolve,reject)=>{
+  resolve(thenable)}
+};
+Promise.resolve(thenable);
+警告：不要在解析为自身的thenable 上调用Promise.resolve。这将导致无限递归，因为它试图展平无限嵌套的promise。
