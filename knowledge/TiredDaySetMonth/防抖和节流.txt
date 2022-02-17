@@ -38,7 +38,7 @@ let previous =0;
     args = arguments;
     if(now - previous > wait){
      fun.apply(context,args);
-   previous = now;
+     previous = now;
   }
  }
 }
