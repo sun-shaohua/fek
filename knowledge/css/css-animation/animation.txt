@@ -1,0 +1,24 @@
+CSS Animation 是通过关键帧来随时间推动对css属性的值进行动画。
+    关键帧动画的行为可以指定他们的持续时间，重复次数，以及如何重复。
+    animation
+    animation-name
+    animation-duration 运动时间
+    animation-delay  延迟时间
+    animation-direction  运动方向 normal|reverse|alternate|alternate-reverse
+    animation-fill-mode
+    animation-iteration-count 循环次数 number｜infinite
+    animation-play-state  🧪
+    animation-timing-function 运动路线 ease|ease in|ease out|ease in out|linear|step-start|step-end
+    @keyframes
+
+    animation-timing-function:
+    1.ease 平滑过度（贝塞尔曲线）
+    2.linear 线性过度 突然开始中间匀速突然停止
+    3.ease-in 快到慢
+    4.ease-out 慢到快
+    5.ease-in-out 慢-快-慢
+    6.step-start 根据定义的帧数，从开始的
+    7.step-end  从结束开始
+
+
+

@@ -4,6 +4,7 @@ JavaScript将数字格式化为千分位
 const value = 123456.7891;
 value.toLocaleString();
 
+
 2.使用正则表达式
 function numToMoneyFieid(input){
     const regExpInfo = /(\d{1,3})(?=(\d{3})+(?:$|\.))/g ;
@@ -11,11 +12,18 @@ function numToMoneyFieid(input){
     return newString;
 }
 
+function numToMoney(input){
+ const regExpInfo = /(\d{1,3})(?=(\d{3})+(?:$|\.))/g;
+ const newString = input.toString().replace(regExpInfo,'$1,');
+ return newString;
+}
+
+
 const regExpInfo = /(\d{1,3})(?=(\d{3})+(?:&|\.))/g
 解读：
 (pattern)   //匹配pattern并获取这一匹配
-(?:pattern) //匹配pattern但不获取结果
-(?=pattern) //正向匹配预查但不获取结果
+(?:pattern) //匹配pattern但不获取结果（消耗匹配）
+(?=pattern) //正向匹配预查但不获取结果（不消耗匹配）
 {number}    //number是一个非负整数 匹配确定次数
 $           //输入字符串的结束位置
 \.          //转译代表逗号，'.'代表除'\n'以外的任意字符

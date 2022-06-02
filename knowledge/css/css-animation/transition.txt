@@ -1,0 +1,10 @@
+transition
+
+过渡：可以为元素在不同的状态之间切换的时候定义不同的过渡效果。比如在不同的伪元素之间切换，像：hover，：active
+
+transition支持多个属性的过渡效果，多个属性用逗号隔开。
+
+transition-property:指定过渡属性名（🧪）
+transition-duration  过渡时间
+transition-timing-function  过渡函数
+transition-delay 过渡延时
