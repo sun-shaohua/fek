@@ -10,4 +10,22 @@
 1.改造函数的创建和普通的函数没有什么区别，构造函数的定义习惯首字母大写.
 2.调用的时候，构造函数需要用new，普通函数就是直接调用就可以
 
+function Person(name,age){
+    this.name=name;
+    this.age=age;
+}
+
+const person  = new Person('xiaohua',30);
+
+console.log(person._proto_);
+console.log(Person.protoType);
+
+console.log(person._proto_ === Person.protoType)
+
+
+原型链总结：
+1:只要有constructor,就有对应的protoType原型对象。
+2.只要有protoType,就有对应的constructor构造函数。
+3.只要是对象，就会有__proto__指向自己构造函数的原型对象。
+
 
