@@ -19,4 +19,20 @@ componentDidMount是先初次渲染完之后执行的函数，可以派发axios
 5.componentWillUnmount
 componentWillUnmount() 会在组件卸载及销毁之前直接调用。在此方法中执行必要的清理操作，例如，清除 timer，取消网络请求或清除在 componentDidMount() 中创建的订阅等。
 
+组件的挂载：
+   组件创建后进行第一次的渲染称为挂载，挂载期会触发的方法：
+      1.constructor（构造函数）
+      2.getInitalState(设置状态机)
+      3.getDefaultProps(获取默认的props)
+      4.UNSAFE_componentWillMount(首次渲染前执行)
+      5.render(渲染组件)
+      6.commonDidMount(render后执行)
+组件更新阶段：
+   组件更新是指初次渲染后，进行组件状态的改变，更新过程中包含的方法：
+      1.commmonWillReceiveProps(父组件更新子组件的state的时候)
+      2.shouldComponentUpdate(该方法决定是state，props的改变是否渲染组件)
+      3.componentWillUpdate(当组件接收到state和props的时候需要执行的逻辑) // 和commonWillMount是相似的
+      4.componentDidUpdate(在组件重新渲染后调用) //和commonDidMoun相似
+组件卸载阶段：
+   组件卸载节点即是组件销毁的过程，在卸载要开始的时候会点用commomWillUnMount
 

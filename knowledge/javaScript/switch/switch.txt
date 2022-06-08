@@ -1,0 +1,8 @@
+switch中的return和break的作用
+
+break：使直接跳出switch，如果是循环语句中使用switch语句，那么break只能跳出switch，不能跳出循环语句。
+
+
+return:直接跳出当前的方法，返回到调用当前方法的语句处，继续执行；
+break:在循环体内结束整个循环过程；
+continue:结束本次循环，跳到下次循环；
