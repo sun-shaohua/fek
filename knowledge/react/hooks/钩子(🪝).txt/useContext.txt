@@ -1,0 +1,49 @@
+useContext
+
+使用： useContext(MyContext);
+    接受一个context对象(React.Context的返回值)，并返回该context的当前值，当前context的值有上层组件离当前组件最近的<MyContext.Provider>的value决定
+
+例子🌰：
+import React, { useContext, createContext, useState } from 'react';
+import { Button } from 'antd';
+
+const themes = {
+  light: {
+    foreground: '#000000',
+    background: '#eeeeee'
+  },
+  dark: {
+    foreground: '#ffffff',
+    background: '#222222'
+  }
+};
+const ThemeContext = createContext(themes.light);
+export default function UseContext() {
+  const [style, setStyle] = useState(themes.light);
+  const onChange = () => {
+    setStyle(themes.dark);
+  };
+  return (
+    <ThemeContext.Provider value={style}>
+      <Toolbar />
+      <Button onClick={onChange}>更改主题</Button>
+    </ThemeContext.Provider>
+  );
+}
+
+function Toolbar(props: any) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+  return (
+    <button style={{ background: theme.background, color: theme.foreground }}>
+      I am styled by theme context!
+    </button>
+  );
+}
