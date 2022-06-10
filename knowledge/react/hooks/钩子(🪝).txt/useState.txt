@@ -1,0 +1,69 @@
+useState
+用法：const [state,setState] = useState(initialState);
+返回一个state，以及更新state得函数
+
+在初次的渲染期间，返回的状态(state)和传入的第一个参数initialState是相同的
+setState函数用于更新state，并将组件的一次渲染加入到队列里面
+在后续的渲染中，useState返回的第一个参数一直是最新的state
+
+函数式更新(setState((preState)=>{return preState+1}))
+   如果新的state需要上一个state来进行计算得出，那么可以将函数传入setState中，该函数先将接受先前的state，计算
+注意这里的同步和异步指的是 setState 函数。因为涉及到 state 的状态合并，react 认为当你在事件绑定中操作 state 是非常频繁的，所以为了节约性能 react 会把多次 setState 进行合并为一次，最后在一次性的更新 state，而定时器里面操作 state 是不会把多次合并为一次更新的。
+
+注意：与 class 组件中的 setState 方法不同，useState 不会自动合并更新对象。
+
+————————————————————————————————————————————————————————————————
+代码块：
+
+import React, { useState } from 'react';
+import Button from 'antd/es/button';
+
+export default function UseState() {
+  const [state, setState] = useState<number>(1);
+  const [_state, _setState] = useState<number>(1);
+  const handleClick = () => {
+    setState(state + 1);
+  };
+  const handleClickFn = () => {
+    setState((prevState) => {
+      return prevState + 1;
+    });
+  };
+  const _handleClick = () => {
+    setTimeout(() => _setState(_state + 1), 1000);
+  };
+  const _handleClickFn = () => {
+    setTimeout(() => {
+      _setState((prevState) => {
+        return prevState + 1;
+      });
+    }, 1000);
+  };
+  const handleClick1 = () => {
+    setTimeout(() => {
+      setState(state + 1);
+      setState(state + 2);
+      // 这样写是正常的，两次setState最后是加2
+    }, 3000);
+  };
+  const handleClickFn1 = () => {
+    setState((prevState) => {
+      return prevState + 1;
+    });
+    setState((prevState) => {
+      return prevState + 2;
+    });
+    //这样写最后加了3
+  };
+  return <React.Fragment>
+    <h1>{state}</h1>
+    <Button onClick={handleClick}>handleClick</Button>
+    <Button onClick={handleClickFn}>handleClickFn</Button>
+    <h1>{_state}</h1>
+    <Button onClick={_handleClick}>handleClick</Button>
+    <Button onClick={_handleClickFn}>handleClickFn</Button>
+    <br />
+    <Button onClick={handleClick1}>handleClick1</Button>
+    <Button onClick={handleClickFn1}>handleClickFn1</Button>
+  </React.Fragment>;
+}

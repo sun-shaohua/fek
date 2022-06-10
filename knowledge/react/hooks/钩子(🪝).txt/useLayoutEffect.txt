@@ -1,0 +1,18 @@
+useLayoutEffect
+
+调用时间： 
+   1.会在dom变更之后同步触发effect，可以使用它来读取dom布局，重新出发渲染。在浏览器执行绘制之前，useLayoutEffect 内部的更新计划将被同步刷新。
+   2.2.useLayoutEffect 与 componentDidMount、componentDidUpdate 的调用阶段是一样的。      
+可视化的时间阶段：
+   1.componentDidMount会在DOM树构建完毕后调用（此时在页面上没有任何显示，只是在内存中构建了DOM树），
+   那么useLayoutEffect也是在DOM树构建完毕后调用，因此在页面显示之前，useLayoutEffect就已经执行完毕了。
+   2.对比useEffect，赋值给 useEffect 的函数会在组件渲染到屏幕之后执行。
+
+执行顺序：
+ 首次渲染
+    1.useLayoutEffect
+    2.useEffect
+ 更新：
+    1.useLayoutEffect
+    2.useEffect.return
+    3.useEffect
