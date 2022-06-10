@@ -1,0 +1,42 @@
+useMemo
+
+const memoizedValue =  React.useMemo(() => computeExpensiveValue(a, b), [a, b]);
+
+返回一个memoize的值
+
+把创建的函数和数组依赖项传入useMemo，它仅会在某个依赖项改变时才重新计算 memoized值。
+
+目的:这种优化有助于避免在每次渲染时都进行高开销的计算。
+
+使用memoizedValue的组件在状态没有发生变化的情况下，可以避免渲染
+
+代码:
+import React, { useMemo, useState } from 'react';
+
+export default function UseMemo() {
+  const [number, setNumber] = useState<number>(0);
+  const onChange = () => {
+    setNumber(number + 1);
+  };
+  return <div>
+    <Test/>
+    <h4>{number}</h4>
+    <button onClick={onChange}>点击(number)</button>
+  </div>;
+}
+
+const Test=()=>{
+  const [state, setState] = useState<number>(0);
+  const onClick = () => {
+    setState(state + 1);
+  };
+  const memoized = useMemo(() => {
+    console.log(1111);
+    return state;
+  }, [state]);
+  return <div>
+    <h2>{state}</h2>
+    <h2>{memoized}</h2>
+    <button onClick={onClick}>点击(state)</button>
+  </div>
+}
