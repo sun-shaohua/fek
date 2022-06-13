@@ -1,0 +1,6 @@
+creatRef
+
+一般用于class组件中，React.creatRef通过ref属性附加到React元素的ref。
+注意⚠️：
+    1.在函数组件中，如果当APP函数被重新渲染时，APP函数将会执行，并且重新创建，初始化所有的变量和表达式。
+    2.creatRef每次渲染都会返回一个新的引用，useRef是返回用一个引用。

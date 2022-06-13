@@ -1,0 +1,13 @@
+forwardRef
+
+使用: React.forwarfRef((props,ref)=>{})
+
+代码:
+    const FancyButton = React.forwardRef((props,ref)=>{
+        return <button ref={ref}>
+        {props.childen}
+        </button>
+    })
+    //使用:
+    const ref = React.creatRef();
+    <FancyButton ref = {ref}>点击</FancyButton>

@@ -1,0 +1,7 @@
+useCallback
+
+const memoizedCallback = useCallback(()=>{dosomething(a,b)},[a,b]);
+
+
+useCallback的作用
+  :避免子组件不必要的reReader
