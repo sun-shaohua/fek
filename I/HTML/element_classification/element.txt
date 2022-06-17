@@ -1,0 +1,4 @@
+element classification
+行内元素  span a img input select textarea
+块状元素 div p pre h1-h6 ul ol li
+內联块状元素 display : inline-block
