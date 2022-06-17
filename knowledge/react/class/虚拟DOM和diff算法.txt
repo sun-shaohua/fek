@@ -9,6 +9,19 @@ DOM全称文档对象模型，本质也是一个JS对象，所以操作DOM对象
 但是实际上，浏览器收到第一个DOM操作请求之后，它并不知道你后面还有9个操作，它就会走一遍完整的渲染流程，显然像计算元素坐标这些操作都是白白浪费的，
 因为下一次DOM操作可能会改变这些坐标，前面的计算就白费了
 
-为什么使用 virtual dom？
+1.什么是REACT: 
+    React用于动态构建JavaScrupt的库，将数据渲染出HTML视图的开源的库。
+2.REACT高效的原因:
+    *react使用虚拟的DOM，不总操作真是的DOM（原声的js操作DOM，浏览器会进行大量的重排和重绘）
+    *react DOM的diffing算法，最小化重绘（原声js操作dom繁琐且效率低）
+    *原声JS没有组件编码方案，组件复用低
+3.REACT的核心库:
+    *react-dom.js 操作DOM的扩展库
+    *bable.min.js 解析js语法的jsx库
+4.
 
 
+
+
+
+文章：https://blog.csdn.net/zhouziyu2011/article/details/71171567?spm=1001.2014.3001.5502
