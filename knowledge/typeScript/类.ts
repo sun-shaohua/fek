@@ -85,4 +85,9 @@ const child = new Child();
 child.color = 'red';
 child.setHeight(180);
 child.name = 'xm';
+
 // child.sex child.height 像这些手受保护的属性（protected,private），在实例中是拿不到的，可以通过get，set方法进行操作
+
+abstract class P {
+    eat(food: string): void {}
+}
