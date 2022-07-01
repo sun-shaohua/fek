@@ -1,0 +1,28 @@
+前端微服务避免项目样式互相污染的问题？
+
+1.控制全局样式的范围，确保样式范围在该项目内，以便不会因前端微服务的形式污染到其他项目
+2.在前端项目中会用到共同的组件库，例如:antd（或自己内部的共用组件库）避免样式互相覆盖，可以在项目的入口处全局的添加前缀名，
+保证每个项目的antd组件的名字是不同的，即便是修改本项目的antd组件的样式，class名字不同，就不会导致在改动样式后污染其他地方的样式
+   1:body[data-module=<模块名>]
+   2: import React, { ReactNode, useEffect } from 'react';
+      import { ConfigProvider } from 'antd';
+      import enUS from 'antd/lib/locale/en_US';
+      import zhCN from 'antd/lib/locale/zh_CN';
+
+      export default function AntdContext(props: { children: ReactNode | React.ReactNode[]}) {
+        const prefixCls = 'my-ant';
+        useEffect(() => {
+          ConfigProvider.config({
+            prefixCls: prefixCls
+          });
+        }, []);
+        return (
+          <ConfigProvider locale={locale} prefixCls={prefixCls}>
+            {props.children}
+          </ConfigProvider>
+        );
+      }
+
+
+
+
