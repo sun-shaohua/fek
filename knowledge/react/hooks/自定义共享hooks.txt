@@ -1,0 +1,23 @@
+import { useEffect, useRef, useState } from 'react';
+
+// 存放调用setState，在更改数据的时候保证同步更新
+let hub: Array<(num: number) => void> = [];
+
+export default function useHooks(num: number): [number, (num: number) => void] {
+  const [state, setState] = useState(num); // 存放数据
+  const ref = useRef<(num: number) => void>((value) => {
+    // 同步更新
+    hub.forEach((updater) => {
+      updater(value);
+    });
+  });
+
+  useEffect(() => {
+    hub.push(setState);
+    return () => {
+      hub = hub.filter((it) => it !== setState);
+    };
+  }, []);
+  //  返回出【存放数据，改变数据的ref】
+  return [state, ref.current];
+}
