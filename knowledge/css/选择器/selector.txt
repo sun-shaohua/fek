@@ -1,0 +1,11 @@
+选择器
+id选择器 #id
+class选择器 .class
+element选择器 div
+后代选择器 div p
+子类选择器 div >p
+相邻兄弟选择器 div +p
+兄弟选择器 div ~p
+伪元素选择器 :visit :hover
+伪类选择器 ::before :after
+通配符选择器 *
