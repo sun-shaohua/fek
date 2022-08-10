@@ -1,0 +1,19 @@
+._ {
+  background-color: rgb(224, 206, 247);
+  border: 5px solid rebeccapurple;
+  overflow: auto;
+
+  .first {
+    float: left;
+    width: 200px;
+    height: 150px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px;
+  }
+
+  .second {
+    padding: 20px;
+  }
+
+}
