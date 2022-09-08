@@ -8,7 +8,7 @@ type _Pick<T, K extends keyof T> = { [P in K]: T[P] }
 /*在T类型中，去除T类型和U类型的交集*/
 type _Exclude<T, U> = T extends U ? never : T
 /*适用于键值对对象中，去除T中包含K的键值对*/
-type _Qmit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>
+type _Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>
 /*将T中的所有属性变成必须的*/
 type _Required<T> = { [P in keyof T]-?: T[P] }
 
@@ -16,5 +16,5 @@ type Pick_<T, K extends keyof T> = { [P in K]: T[P]; }
 type Partial_<T> = { [P in keyof T]?: T[P]; }
 type Record_<K extends keyof any, T> = { [P in K]: T }
 type Exclude_<T, U> = T extends U ? never : T;
-type Qmit_<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>
+type Omit_<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>
 type Required_<T> = { [P in keyof T]-?: T[P] }
