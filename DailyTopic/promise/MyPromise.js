@@ -1,11 +1,12 @@
 class MyPromise {
     // promiseA+  executor
+    state = 'pending';
+    value = undefined;
+    reason = undefined;
+    onFulfilledCallback = [];
+    onRejectedCallback = [];
+
     constructor(executor) {
-        this.state = 'pending';
-        this.value = undefined;
-        this.reason = undefined;
-        this.onFulfilledCallback = [];
-        this.onRejectedCallback = [];
         const resolve = (value) => {
             // 如果then的回调函数onFulfilled, onRejected为函数的话, 需要
             // 在 promise 执行结束前其不可被调用,当 promise 执行结束后其必须被调用
@@ -61,3 +62,9 @@ class MyPromise {
         return promise;
     }
 }
+const promise = new MyPromise((resolve,reject)=>{
+    setTimeout(()=>{resolve(1)},10000)
+})
+promise.then((res)=>{
+    return 2;
+})
