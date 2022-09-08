@@ -1,2 +1,3 @@
 盒子模型分为两种：
-box-sizing:context-box|content-box|border-box
+box-sizing:content-box|border-box
+
