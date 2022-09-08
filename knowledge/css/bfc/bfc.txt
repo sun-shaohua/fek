@@ -15,5 +15,5 @@ BFC的布局规则
 如何创建BFC
 1、float的值不是none。
 2、position的值不是static或者relative。
-3、display的值是inline-block、table-cell、flex、table-caption或者inline-flex
+3、display的值是flow-root、inline-block、table-cell、flex、table-caption或者inline-flex
 4、overflow的值不是visible
