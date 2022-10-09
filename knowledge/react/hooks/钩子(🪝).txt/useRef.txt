@@ -62,7 +62,7 @@ const Timer = () => {
     return () => {
       clearInterval(ref.current);
     };
-  }, [timer]);
+  }, []);
   return <div>
     <h2>{timer}</h2>
     <Button onClick={() => {

@@ -1,0 +1,4 @@
+ script属性设置
+ 1.不加如何属性
+ 2.defer
+ 3.async

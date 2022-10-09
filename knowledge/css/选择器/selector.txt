@@ -7,5 +7,5 @@ element选择器 div
 相邻兄弟选择器 div +p
 兄弟选择器 div ~p
 伪元素选择器 :visit :hover
-伪类选择器 ::before :after
+伪类选择器 ::before ::after
 通配符选择器 *
