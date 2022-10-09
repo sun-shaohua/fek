@@ -1,0 +1,5 @@
+globalThis是javascript运行时所在宿主环境提供的全局对象
+
+window对象是浏览器的一个web api,可以说是global在浏览器中的具体表现
+
+global对象是单体内置对象，即不依赖宿主环境的对象，而window对象依赖浏览器
