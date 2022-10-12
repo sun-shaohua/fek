@@ -4,3 +4,4 @@ function numToMoney(num) {
 }
 console.log(numToMoney(111111111111));
 console.log(numToMoney(11111, 1111))
+
