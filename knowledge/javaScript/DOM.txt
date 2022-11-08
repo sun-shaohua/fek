@@ -1,0 +1,581 @@
+DOM（Document Object Model）
+ 是浏览器操作网页的接口，全称：'文档对象模型（Document object model）'，其作用是将html文档以对象的形式提供接口进行操作。
+ 1.文档 ： 表示整个网页的HTML文档。
+ 2.对象 ：网页中的每一部分转化为一个对象。
+ 3.模型 ： 使用模型来表示对象之间的关系。
+
+文档对象模型是网页的编程接口，他给文档一个结构化的表述并提供来接口来进行操作。
+严格的来说，DOM不属于JS，但是操作DOM是JS是常见的事务。DOM是浏览器厂商提供的js操作html的api，不同的浏览器厂商提供的api可能不同，所以dom存在兼容性问题（少部分）
+
+1.1节点层级
+  任何 HTML 或 XML 文档都可以用 DOM 表示为一个由节点构成的层级结构。
+节点分很多类型，每种类型对应着文档中不同的信息和（或）标记，也都有自己不同的特性、数据和方法，而且与其他类型有某种关系。
+这些关系构成了层级，让标记可以表示为一个以特定节点为根的树形结构。
+DOM的最小组成单位叫做节点（node）。文档的树形结构（DOM树），就是由各种不同类型的节点组成。每个节点可以看作是文档树的一片叶子。
+
+ 节点的类型有七种：Document、DocumentType、Element、Text、Comment、DocumentFragment。
+
+ 常用节点
+
+  文档节点（document）整个HTML文档document对象作为window对象的属性存在的，我们不用获取可以直接使用。
+
+  元素节点（Element）HTML文档中的HTML标签。
+
+  属性节点（Attribute)素的属性 表示的是标签中的一个一个的属性，这里要注意的是属性节点并非是元素节点的子节点，而是元素节点的一部分。
+
+  文本节点（Text）HTML标签中的文本内容。
+
+  其他节点 DocumentType doctype标签（比如<!DOCTYPE html>）。
+
+  Comment 注释
+
+  DocumentFragment* 文档的片段
+
+这七种节点都属于浏览器原生提供的节点对象(下面要讲的Node对象)的派生对象，具有一些共同的属性和方法。
+
+1.2.节点树
+一个文档的所有节点，按照所在的层级，可以抽象成一种树状结构。这种树状结构就是DOM。
+
+最顶层的节点就是document节点，它代表了整个文档。文档里面最高的HTML标签，一般是<html>，它构成树结构的根节点（root node），其他HTML标签节点都是它的下级。
+
+除了根节点以外，其他节点对于周围的节点都存在三种关系。
+
+父节点关系（parentNode）：直接的那个上级节点。
+
+子节点关系（childNode）：直接的下级节点。
+
+同级节点关系（sibling）：拥有同一父节点的节点。
+
+DOM提供操作接口，用来获取三种关系的节点。其中，子节点接口包括firstChild（第一个子节点）和lastChild（最后一个子节点）等属性，同级节点接口包括nextSibling（紧邻在后的那个同级节点）和previousSibling（紧邻在前的那个同级节点）属性。
+
+2.Node类型
+DOM Level 1 描述了名为 Node 的接口，这个接口是所有 DOM 节点类型都必须实现的。Node 接口在 JavaScript中被实现为 Node 类型，在除 IE之外的所有浏览器中都可以直接访问这个类型。在 JavaScript中，所有节点类型都继承 Node 类型，因此所有类型都共享相同的基本属性和方法。
+
+2.1.属性
+
+2.1.1.nodeType
+
+nodeType属性返回一个整数值，表示节点的类型，常用节点类型如下
+
+节点类型	值	对应常量
+文档节点（document）	9	Node.DOCUMENT_NODE
+元素节点（element）	1	Node.ELEMENT_NODE
+属性节点（attr）	2	Node.ATTRIBUTE_NODE
+文本节点（text）	3	Node.TEXT_NODE
+文档类型节点（DocumentType）	10	Node.DOCUMENT_TYPE_NODE
+注释节点（Comment）	8	Node.COMMENT_NODE
+文档片断节点（DocumentFragment）	11	Node.DOCUMENT_FRAGMENT_NODE
+
+<script>
+  console.log(document.nodeType); //9
+</script>
+
+2.1.2.nodeName
+
+nodeName属性返回节点的名称
+
+<div id="d1">hello world</div>
+<script>
+  var div = document.getElementById('d1');
+  console.log(div.nodeName); //DIV
+</script>
+
+2.1.3.nodeValue
+
+nodeValue属性返回一个字符串，表示当前节点本身的文本值，该属性可读写只有文本节点（text）、注释节点（comment）和属性节点（attr）有文本值.
+
+<div id="d1">hello world</div>
+<script>
+  var div = document.getElementById('d1');
+  console.log(div.nodeValue); // null
+  // 读
+  console.log(div.firstChild.nodeValue); //hello world
+  // 写
+  div.firstChild.nodeValue = '123';
+</script>
+
+2.1.4.textContent
+
+textContent属性返回当前节点和它的所有后代节点的文本内容
+
+<div id="d1">Hello <span>JavaScript</span> DOM</div>
+<script>
+  var div = document.getElementById('d1');
+  console.log(div.textContent); //Hello JavaScript DOM
+</script>
+
+2.1.5.nextSibling
+
+nextSibling属性返回紧跟在当前节点后面的第一个同级节点。如果当前节点后面没有同级节点，则返回null
+
+（注意：可能会获取到“空格”或“回车”这样的文本节点）
+
+<div id="d1">hello</div><div id="d2">world</div>
+<script>
+  var div1 = document.getElementById('d1');
+  var div2 = document.getElementById('d2');
+  console.log(div1.nextSibling); //<div id="d2">world</div>
+  console.log(div1.nextSibling === div2); // true
+</script>
+
+2.1.6.previousSibling
+
+previousSibling属性返回当前节点前面的、距离最近的一个同级节点。如果当前节点前面没有同级节点，则返回null
+
+<div id="d1">hello</div>
+<div id="d2">world</div>
+<script>
+  var div1 = document.getElementById('d1');
+  var div2 = document.getElementById('d2');
+  console.log(div2.previousSibling); //<div id="d1">hello</div>
+  console.log(div2.previousSibling === div1); // true
+</script>
+
+2.1.7.parentNode
+
+parentNode属性返回当前节点的父节点。对于一个节点来说，它的父节点只可能是三种类型：元素节点(element)、文档节点(document)和文档片段节点(documentfragment)
+
+<div id="d1">hello world</div>
+<script>
+  var div1 = document.getElementById('d1');
+  console.log(div1.parentNode); // body
+</script>
+
+2.1.8.parentElement
+
+parentElement属性返回当前节点的父元素节点。如果当前节点没有父节点，或者父节点类型不是元素节点，则返回null
+
+<div id="d1">hello world</div>
+<script>
+  var div1 = document.getElementById('d1');
+  console.log(div1.parentElement); // body
+  // 将父元素节点的背景颜色设置为红色
+  div1.parentElement.style.backgroundColor = 'red';
+</script>
+
+2.1.9.firstChild和lastChild
+
+firstChild属性返回当前节点的第一个子节点，如果当前节点没有子节点，则返回null，last则返回最后一个子节点。
+
+<div id="d1">hello world<div>我是子节点</div></div>
+<div id="d2"><div>我是子节点</div></div>
+<script>
+  var div1 = document.getElementById('d1');
+  console.log(div1.firstChild); // hello world
+  console.log(div1.lastChild); // <div>我是子节点</div>
+  var div2 = document.getElementById('d2');
+  console.log(div2.firstChild); // <div>我是子节点</div>
+</script>
+
+2.2.方法
+
+以下方法为常用操作节点的方法，其中最常用的方法是appendChild()，用于在 childNodes 列表末尾添加节点。
+
+注意：以下四个方法都需要父节点对象进行调用!
+
+2.2.1.appendChild
+
+appendChild方法接受一个节点对象作为参数，将其作为最后一个子节点，插入当前节点。该方法的返回值就是插入文档的子节点。
+
+<script>
+  // 创建元素节点p
+  var p = document.createElement('p');
+  // 向p标签插入内容
+  p.innerHTML = '我是一个p标签';
+  // 将节点插入到body中
+  document.body.appendChild(p);
+</script>
+2.2.2.insertBefore()
+
+insertBefore方法用于将某个节点插入父节点内部的指定位置。
+
+var insertedNode = parentNode.insertBefore(newNode, referenceNode);
+
+insertBefore方法接受两个参数，第一个参数是所要插入的节点newNode，第二个参数是父节点parentNode内部的一个子节点referenceNode。newNode将插在referenceNode这个子节点的前面。返回值是插入的新节点newNode
+
+<div id="parentElement">
+  <span id="childElement">foo bar</span>
+</div>
+<script>
+  //创建一个新的、普通的<span>元素
+  var sp1 = document.createElement("span");
+  // 向span标签插入内容
+  sp1.innerHTML = '我是span标签'
+  //插入节点之前，要获得节点的引用
+  var sp2 = document.getElementById("childElement");
+  //获得父节点的引用
+  var parentDiv = sp2.parentNode;
+  //在DOM中在sp2之前插入一个新元素
+  parentDiv.insertBefore(sp1, sp2);
+</script>
+
+2.2.3.removeChild()
+
+removeChild方法接受一个子节点作为参数，用于从当前节点移除该子节点。返回值是移除的子节点。
+
+<div id="d1">
+  <span id="s1">我是span标签</span>
+</div>
+<script>
+  var span1 = document.getElementById('s1');
+  span1.parentNode.removeChild(span1);
+</script>
+2.2.4.replaceChild()
+
+replaceChild方法用于将一个新的节点，替换当前节点的某一个子节点。
+
+var replacedNode = parentNode.replaceChild(newChild, oldChild);
+
+replaceChild方法接受两个参数，第一个参数newChild是用来替换的新节点，第二个参数oldChild是将要替换走的子节点。返回值是替换走的那个节点oldChild。
+
+<div id="d1">
+  <span id="s1">我是span标签</span>
+</div>
+<script>
+  var span1 = document.getElementById('s1');
+  //创建一个新的div标签
+  var div1 = document.createElement("div");
+  // 向div标签插入内容
+  div1.innerHTML = '我是div1标签';
+  // 节点替换
+  span1.parentNode.replaceChild(div1, span1);
+</script>
+2.2.5.其他方法
+
+cloneNode()
+
+方法返回调用该方法的节点的一个副本.
+
+var dupNode = node.cloneNode(deep);
+
+node
+
+将要被克隆的节点
+
+dupNode
+
+克隆生成的副本节点
+
+deep 可选
+
+是否采用深度克隆,如果为true,则该节点的所有后代节点也都会被克隆,如果为false,则只克隆该节点本身。
+
+var p = document.getElementById("para1"),
+var p_prime = p.cloneNode(true);
+3.Document类型
+Javascript通过使用Document类型表示文档。在浏览器中，document对象是HTMLDocument的一个实例，表示整个HTML页面。document对象是window对象的一个属性，因此可以直接调用。HTMLDocument继承自Document。
+
+3.1.属性
+
+documentElement
+
+始终指向HTML页面中的<html>元素。
+
+body
+
+直接指向<body>元素
+
+doctype
+
+访问<!DOCTYPE>, 浏览器支持不一致，很少使用
+
+title
+
+获取文档的标题
+
+URL
+
+取得完整的URL
+
+domain
+
+取得域名，并且可以进行设置，在跨域访问中经常会用到。
+
+referrer
+
+取得链接到当前页面的那个页面的URL，即来源页面的URL。
+
+images
+
+获取所有的img对象，返回HTMLCollection类数组对象
+
+forms
+
+获取所有的form对象，返回HTMLCollection类数组对象
+
+links
+
+获取文档中所有带href属性的<a>元素
+
+3.2.DOM编程界面
+
+HTML DOM 能够通过 JavaScript 进行访问（也可以通过其他编程语言）。
+
+在 DOM 中，所有 HTML 元素都被定义为对象。
+
+编程界面是每个对象的属性和方法。
+
+属性是您能够获取或设置的值（就比如改变 HTML 元素的内容）。
+
+方法是您能够完成的动作（比如添加或删除 HTML 元素）。
+
+实例
+
+下面的例子改变了 id="demo" 的 <p> 元素的内容：
+
+<html>
+<body>
+
+<p id="demo"></p>
+
+<script>
+	document.getElementById("demo").innerHTML = "Hello World!";
+</script>
+
+</body>
+</html>
+在上面的例子中，getElementById 是方法，而 innerHTML 是属性。
+
+getElementById 方法
+
+访问 HTML 元素最常用的方法是使用元素的 id。
+
+在上面的例子中，getElementById 方法使用 id="demo" 来查找元素。
+
+innerHTML 属性
+
+获取元素内容最简单的方法是使用 innerHTML 属性。
+
+innerHTML 属性可用于获取或替换 HTML 元素的内容。
+
+innerHTML 属性可用于获取或改变任何 HTML 元素，包括 <html> 和 <body>。
+
+3.3.查找元素
+
+方法	描述
+document.getElementById(id)	通过元素 id 来查找元素
+document.getElementsByTagName(name)	通过标签名来查找元素
+document.getElementsByClassName(name)	通过类名来查找元素
+document.querySelector()	返回文档中匹配指定的CSS选择器的第一元素
+document.querySelectorAll()	document.querySelectorAll() 是 HTML5中引入的新方法，返回文档中匹配的CSS选择器的所有元素节点列表
+getElementById()
+
+返回匹配指定 id 的一个元素。
+
+<div id="d1">我是一个div标签</div>
+<script>
+  // 查找id为d1的标签
+  var div = document.getElementById('d1');
+  console.log(div);
+</script>
+getElementsByTagName()
+
+返回一个HTMLCollection(伪数组)，包含匹配指定标签名的所有元素。
+
+<p>我是p标签</p>
+<p>我是p标签</p>
+<p>我是p标签</p>
+<script>
+  // 查找所有p标签
+  var p = document.getElementsByTagName('p');
+  console.log(p);
+</script>
+getElementsByClassName()
+
+返回一个HTML集合HTMLCollection(伪数组)，包含匹配指定类名的所有元素。
+
+<div class="div1">我是div标签</div>
+<div class="div1">我是div标签</div>
+<div class="div1">我是div标签</div>
+<script>
+  // 查找class为div1的标签
+  var div = document.getElementsByClassName('div1');
+  console.log(div);
+</script>
+document.querySelector()
+
+返回文档中匹配指定的CSS选择器的第一元素
+
+<div id="div1">我是一个div</div>
+<div id="div1">我是一个div</div>
+<script>
+  document.querySelector("#div1").innerHTML = "Hello World!";
+</script>
+document.querySelectorAll()
+
+document.querySelectorAll() 是 HTML5中引入的新方法，返回文档中匹配的CSS选择器的所有元素节点列表
+
+<div class="div1">我是一个div</div>
+<div class="div1">我是一个div</div>
+<script>
+  console.log(document.querySelectorAll(".div1"));
+  var x = document.querySelectorAll(".div1");
+  x[0].innerHTML = '我是新的div';
+</script>
+3.4.添加元素
+
+document.createElement(element)
+
+创建一个新的HTML元素，要与appendChild() 或 insertBefore()方法联合使用。其中，appendChild() 方法在节点的子节点列表末添加新的子节点。insertBefore() 方法在节点的子节点列表任意位置插入新的节点。
+
+<script>
+  // 创建元素节点p
+  var p = document.createElement('p');
+  // 向p标签插入内容
+  p.innerHTML = '我是一个p标签';
+  // 将节点插入到body中
+  document.body.appendChild(p);
+</script>
+3.5.写入
+
+document.write()
+
+向文档写入文本或 HTML 表达式 或 JavaScript 代码。
+
+<script>
+  document.write("<p>Hello world!</p>");
+  document.write("<span>Hello DOM!</span>");
+  document.write("Hello Weekend!");
+</script>
+4.Element类型
+Element 对象对应网页的 HTML 元素。每一个 HTML 元素在 DOM 树上都会转化成一个Element节点对象。
+
+4.1.属性
+
+attributes：返回一个与该元素相关的所有属性的集合。
+
+classList：返回该元素包含的 class 属性的集合。
+
+className：获取或设置指定元素的 class 属性的值。
+
+clientHeight：获取元素内部的高度，包含内边距，但不包括水平滚动条、边框和外边距。
+
+clientTop：返回该元素距离它上边界的高度。
+
+clientLeft：返回该元素距离它左边界的宽度。
+
+clientWidth：返回该元素它内部的宽度，包括内边距，但不包括垂直滚动条、边框和外边距。
+
+innerHTML：设置或获取 HTML 语法表示的元素的后代。
+
+tagName：返回当前元素的标签名。 `
+
+4.2.常用方法
+
+方法	描述
+element.innerHTML = new html content	改变元素的 innerHTML
+element.attribute = value	修改属性的值
+element.getAttribute()	返回元素节点的指定属性值。
+element.setAttribute(attribute, value)	设置或改变 HTML 元素的属性值
+element.style.property = new style	改变 HTML 元素的样式
+element.innerHTML
+
+属性设置或获取HTML语法表示的元素的后代。
+
+<div id="div1">我是一个div</div>
+<script>
+  var d1 = document.getElementById('div1');
+  // 获取
+  console.log(d1.innerHTML);
+  // 设置
+  d1.innerHTML = '我是新的内容'
+</script>
+element.attribute = value
+
+修改已经存在的属性的值
+
+<div id="div1">123</div>
+<script>
+  var d1 = document.getElementById('div1');
+  // 直接将已经存在的属性进行修改
+  d1.id = 'div2';
+</script>
+element.getAttribute()
+
+返回元素节点的指定属性值。
+
+<div id="div1">我是一个div</div>
+<script>
+  var div = document.getElementById('div1');
+  console.log(div.getAttribute('id')); // div1
+</script>
+element.setAttribute(attribute, value)
+
+把指定属性设置或更改为指定值。
+
+<div id="div1">我是一个div</div>
+<script>
+  var d1 = document.getElementById('div1');
+  // 设置div1的class为divCla
+  d1.setAttribute('class', 'divCla');
+</script>
+element.style.property
+
+设置或返回元素的 style 属性。
+
+<div id="div1">我是一个div</div>
+<script>
+  var d1 = document.getElementById('div1');
+  // 获取div1的style样式
+  console.log(d1.style);
+  // 设置div1的style
+  d1.style.backgroundColor = 'red';
+</script>
+其他详见HTML DOM Element 对象
+
+Element - Web API 接口参考 | MDN
+
+5.Text类型
+Text 节点由 Text 类型表示，包含按字面解释的纯文本，也可能包含转义后的 HTML 字符，但不含 HTML 代码。
+
+5.1.属性及方法
+
+length
+
+文本长度
+
+appendData(text)
+
+追加文本
+
+deleteData(beginIndex,count)
+
+删除文本
+
+insertData(beginIndex,text)
+
+插入文本
+
+replaceData(beginIndex,count,text)
+
+替换文本
+
+splitText(beginIndex)
+
+从beginIndex位置将当前文本节点分成两个文本节点
+
+document.createTextNode(text)
+
+创建文本节点，参数为要插入节点中的文本
+
+substringData(beginIndex,count)
+
+从beginIndex开始提取count个子字符串
+
+综合案例
+
+		<div id="container"></div>
+<script>
+  // 创建文本节点
+  var textNode = document.createTextNode('Hello World!');
+  // 获取container
+  var div = document.getElementById('container');
+  // 将文本节点插入container
+  div.appendChild(textNode);
+  // 替换文本
+  textNode.replaceData(0,5,'Hi');
+  // 插入文本
+  textNode.insertData(0, 'Hello')
+</script>
+
+
