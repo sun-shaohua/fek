@@ -12,5 +12,5 @@ const mapToObj2 = (map: Map<string, string>) => {
 
 // 3
 const mapToObj3 = (map: Map<string, string>) => {
-    return Array.from(map.entries()).reduce((obg, [key, value]) => (Object.assign(obg, {[key]: value})), {})
+    return Array.from(map.entries()).reduce((obj, [key, value]) => (Object.assign(obj, {[key]: value})), {})
 }

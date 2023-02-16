@@ -1,9 +1,0 @@
-盒子模型
-
-分为两大类：
-1.标准盒子模型box-sizing:content-box
-2.IE盒子模型(怪异盒子模型)box-sizing:border-box
-
-区别：
-css height：100px padding：10px
-在标准盒子模型的实际高度100px;在IE盒子模型的高度120px

@@ -1,0 +1,10 @@
+service worker
+
+由来
+ service worker是w3c在2014年提出的一个html5的api，主要是做持久的离线缓存，service worker是浏览器的一个高级特性，原本是web worker
+ 是独立于网页的脚本。
+ web worker的出现就是为了解放主线程，随着web业务的越来越复杂话，js的耗时，耗资源的运算过程，导致各种程度上的性能问题。
+ 而web worker由于独立于主线程，则可以将一些复杂的逻辑交由它来去做，完成后再通过postMessage的方法告诉主线程。
+ service worker则是web worker的升级版本，相较于后者，前者拥有了持久离线缓存的能力。
+
+

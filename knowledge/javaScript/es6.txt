@@ -1,0 +1,13 @@
+Es6泛指Es5之后的新语法
+1.let const
+2.模版字符串
+3.箭头函数
+4.symbol（新增基本类型）
+5.set,map
+6.for of
+7.promise
+8.async
+9.扩展符
+10.结构赋值  const [a,b] = [1,2]
+11.函数默认值
+12.class
