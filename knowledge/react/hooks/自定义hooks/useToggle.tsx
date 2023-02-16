@@ -1,6 +1,8 @@
 import React from 'react';
 
-function useToggle<D, R>(defaultValue: D = false as unknown as D, reverseValue?: R) {
+function useToggle<D, R>(defaultValue: D = false as unknown as D, reverseValue?: R)
+
+{
     const [state, setState] = React.useState<D | R>(defaultValue);
     const actions = React.useMemo(() => {
         const reverseValueOrigin = (reverseValue === undefined ? !defaultValue : reverseValue) as D | R;
