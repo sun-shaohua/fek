@@ -36,3 +36,26 @@ const F: Required<A> = {
     name: '1',
     age: 1, weight: 1
 }
+// exclude
+type AA = number | string;
+type BB = number
+type CC = Exclude<AA, BB>;
+
+type myname = { name: string };
+
+interface my extends myname {
+    age: number;
+}
+
+const a: my = {
+    name: '1',
+    age: 2
+}
+
+function type(bool: boolean): Promise<number> | number {
+    if (bool) {
+        return Promise.resolve(2)
+    } else {
+        return 2
+    }
+}
