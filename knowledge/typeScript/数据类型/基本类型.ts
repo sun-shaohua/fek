@@ -6,6 +6,7 @@ let decLiteral = 1;
 let myName: string = 'xiaoming';
 // array
 let arr: Array<number | string> = [1, '1'];
+let arr1 : number[] =[1]
 // tuple 元组
 let tuple: [number, string] = [1, '1']
 // 联合类型
