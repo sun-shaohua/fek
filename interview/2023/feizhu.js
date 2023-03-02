@@ -28,14 +28,18 @@ class Query {
     };
     groupBy = (key) => {
         const groupFun = () => {
-            let map = {};
-            while (this.data.length) {
-                let current = this.data.pop();
-                map[current[key]] = map[current[key]] || [];
-                map[current[key]].push(current);
+            const map = {};
+            while (this.data.length > 0) {
+                const cur = this.data.pop();
+                if (map[cur[key]]) {
+                    map[cur[key]].push(cur)
+                } else {
+                    map[cur[key]] = [cur]
+                }
             }
-            const res = Object.keys(map).map((key) => map[key]);
-            this.data = res;
+            return Object.keys(map).map((key) => {
+                return map[key]
+            })
         };
         this.task.push(groupFun);
         return this;
@@ -46,14 +50,13 @@ class Query {
     };
 }
 
-const data = [
-    { name: 'foo', age: 16, city: 'shanghai' },
-    { name: 'bar', age: 24, city: 'hangzhou' },
-    { name: 'fiz', age: 22, city: 'shanghai' },
-    { name: 'baz', age: 19, city: 'hangzhou' }
-];
+const data = [{name: 'foo', age: 16, city: 'shanghai'}, {name: 'bar', age: 24, city: 'hangzhou'}, {
+    name: 'fiz',
+    age: 22,
+    city: 'shanghai'
+}, {name: 'baz', age: 19, city: 'hangzhou'}];
 query(data)
-    .where((item) => item.age > 18)
-    .orderBy('age')
-    .groupBy('city')
-    .execute();
+    .where((item) => item.age > 18) // 筛选
+    .orderBy('age') // 排序（key,order） 第二个参数默认正序
+    .groupBy('city') //分组
+    .execute(); //调用execute的时候在执行
