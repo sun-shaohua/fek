@@ -17,6 +17,6 @@ function selectionSort(arr) {
     return arr;
 }
 
-const arr = [1, 3, 4, 2, 7, 6, 5];
+const arr = [8,1, 3, 4, 2, 7, 6, 5];
 selectionSort(arr);
 console.log(arr);
