@@ -63,3 +63,4 @@
 7.缓存的种类
  cookie webStorage(localStorage|sessionStorage),indexedDB
 
+1
