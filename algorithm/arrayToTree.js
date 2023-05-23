@@ -49,7 +49,6 @@ const arrayToTree2 = (array, root) => {
             return res;
         }
     }
-   return loop(root);
 }
 
 const arrayToTree3 = (array, root) => {
@@ -67,18 +66,3 @@ const arrayToTree3 = (array, root) => {
 
 console.log(arrayToTree3(arr, 0));
 
-const arrayToTree4=(array,root)=>{
-    const loop =(pid)=>{
-        const res =[];
-        const i =0;
-        while (i < array.length){
-            const cur = arr[i];
-            i++;
-            if(cur.parentId !== pid) continue;
-            cur.children = loop(cur.id);
-            res.push(cur);
-        }
-        return res;
-    }
-    return loop(root)
-}
