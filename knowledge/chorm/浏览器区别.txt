@@ -1,0 +1,31 @@
+浏览器的排版引擎:
+排版引擎(layout engine), 也称为浏览器引擎(browser engine), 页面渲染引擎(rendering engine)或样板引擎。
+例如gekco(火狐，网景)，trident(微软，ie4-ie11)，webkit(safari, 以前的chrom也在使用)，blink(webkit的分支，chrom，edge，opera)
+
+JavaScript引擎
+
+高级的编程语言都是需要转成最终的机器指令来运行的。
+我们编写的JavaScript无论交给浏览器环境或者node环境，最后都需要被cpu执行的。
+但是cpu只认识自己的指令集，实际上是机器语言，才能被cpu执行。
+所以我们需要JavaScript引擎来帮助我们将JavaScript代码翻译成cpu指令来运行。
+
+比较常见的JavaScript引擎有哪些？
+
+spiderMonkey：第一款JavaScript引擎，由JavaScript作者开发
+chakra：微软开发，用于ie
+JavaScriptCore：webkit中的JavaScript引擎，Apple开发。好像小程序也用的这个。
+v8：chrom开发。
+
+浏览器内核和JavaScript引擎的关系
+以webkit举例：
+webkit浏览器内核实际上是由两部分组成的。
+
+WebCore：负责HTML解析，布局，渲染等相关工作。
+JavaScriptCore： 解析，执行JavaScript代码
+
+v8引擎
+我们来看一下对v8引擎的定义：
+
+v8是用c++编写的google开源高性能JavaScript和webAssembly引擎，它用于chrom和nodejs等
+它实现ecmascript和webAssembly，并在win7或更高版本，macOS10.12.....等系统上运行。
+v8可以独立运行，也可以嵌入到任何c++应用程序中
