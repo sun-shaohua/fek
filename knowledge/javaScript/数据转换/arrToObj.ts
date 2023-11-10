@@ -8,3 +8,8 @@ const arr: Array<[string, number]> = [
 const arrToObj = (arr: Array<[string, number]>) => {
     return arr.reduce((obj, [key, value]) => (obj[key] = value,obj), {})
 }
+const arr2Obj = (arr:Array<[string,number]>)=>{
+    return arr.reduce((obj,[key,value])=>{
+        return obj[key] =value;
+    },{})
+}

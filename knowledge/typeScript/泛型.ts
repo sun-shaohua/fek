@@ -11,6 +11,10 @@ type _Exclude<T, U> = T extends U ? never : T
 type _Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>
 /*将T中的所有属性变成必须的*/
 type _Required<T> = { [P in keyof T]-?: T[P] }
+/*函数参数类型*/
+type _Parameter<T extends (...args: any) => any> = T extends (...args: infer P) => any ? P : never;
+/*函数返回值类型*/
+type _ReturnType<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : never;
 
 type Pick_<T, K extends keyof T> = { [P in K]: T[P]; }
 type Partial_<T> = { [P in keyof T]?: T[P]; }
@@ -18,3 +22,5 @@ type Record_<K extends keyof any, T> = { [P in K]: T }
 type Exclude_<T, U> = T extends U ? never : T;
 type Omit_<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>
 type Required_<T> = { [P in keyof T]-?: T[P] }
+type Parameter_<T extends (...args: any) => any> = T extends (...args: infer P) => any ? P : never;
+type ReturnType_<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : never;

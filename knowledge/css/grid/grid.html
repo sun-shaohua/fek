@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>grid</title>
+  <style>
+    .grid{
+      display: grid;
+      grid-template: repeat(auto-fill,40px) / repeat(auto-fill,minmax(40px,100px));
+      grid-gap:10px;
+      }
+    .grid >div{
+      background-color:#ffa39e;
+      }
+     /*移动某个元素的位置*/
+     .grid >div:nth-child(1){
+       grid-column: span 2;
+       }
+  </style>
+</head>
+<body>
+ <div class="grid">
+   <div>1</div>
+   <div>2</div>
+   <div>3</div>
+   <div>4</div>
+   <div>5</div>
+   <div>6</div>
+   <div>7</div>
+   <div>8</div>
+   <div>9</div>
+ </div>
+</body>
+</html>

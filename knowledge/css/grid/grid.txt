@@ -1,0 +1,20 @@
+grid布局
+
+grid是关于网格布局的css样式属性，其中有显式网格属性：grid-template-rows、grid-template-columns和grid-template-areas,
+隐式网格属性grid-auto-rows、grid-auto-columns和grid-auto-flow,间距属性grid-column-gap和grid-row-gap
+
+1.使用grid布局
+display:grid|inline-grid
+2.grid布局行高
+grid-template-rows: repeat(auto-fill,40px)
+定义行高是40px,因为使用auto-fill，所以行数是通过计算得出的。
+3.grid布局列宽
+grid-template-columns: repeat(auto-fill,minmax(40px,50px))
+定义列的宽，因为使用auto-fill,所以列数是通过父级容器的宽度来计算得出。
+4.值auto-fill｜auto-fit
+在不确定具体的行数和列数的时候可以在repeat中使用这两个值，作用是为了自适应，其中区别再于，如果所有元素加起来不足一行，auto-fill不会填充空白处
+但是auto-fit会填充空白处
+5.grid-column指定每个元素的位置,grid-column:grid-column-start/grid-column-end
+6.grid-row指定每个元素的位置,grid-row:grid-row-start/grid-row-end
+相关介绍: https://css-tricks.com/snippets/css/complete-guide-grid/#top-of-site
+
